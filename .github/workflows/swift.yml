@@ -1,7 +1,7 @@
 # This workflow will build a Swift project
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-swift
 
-name: Swift Build & Test
+name: Xcode Build & Test
 
 on:
   push:
@@ -17,14 +17,20 @@ jobs:
       - name: リポジトリをチェックアウト
         uses: actions/checkout@v3
 
-      - name: Swiftのバージョン確認
-        run: swift --version
+      - name: Xcodeのバージョン確認
+        run: xcodebuild -version
 
-      - name: 依存関係の解決
-        run: swift package resolve
+      - name: シミュレータの一覧（デバッグ用）
+        run: xcrun simctl list devices
 
-      - name: ビルド実行
-        run: swift build --build-tests
+      - name: ビルド
+        run: swift build
 
-      - name: テスト実行
-        run: swift test
+      - name: テスト
+        run: |
+          xcodebuild clean test \
+            -workspace BudgetBook.xcworkspace \
+            -scheme Tests \
+            -destination 'platform=iOS Simulator,name=iPhone 14' \
+            -sdk iphonesimulator \
+            -enableCodeCoverage YES
