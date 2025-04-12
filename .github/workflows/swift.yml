@@ -1,51 +1,21 @@
 # This workflow will build a Swift project
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-swift
-env:
-  XCODE_VERSION: "16.3"
-
-name: Xcode Build & Test
+name: ビルド & テスト
 
 on:
   push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+    branches: [main]
 
-jobs:
-  build-and-test:
-    runs-on: macos-latest
-
+jobs: 
+  build:
+    runs-on: macOS-latest
+    
     steps:
-      - name: リポジトリをチェックアウト
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v2
 
-      - name: Xcode 16.3 をインストール
-        uses: apple/actions/setup-xcode@v3
+      - uses: maxim-lobanov/setup-xcode@v1
         with:
-          xcode-version: '16.3'
+          xcode-version: '16.3.0'
 
-      - name: Set Xcode for CI
-        run: sudo xcode-select -s /Applications/Xcode_${{ env.XCODE_VERSION }}.app
-
-      - name: Xcodeのバージョン確認
-        run: xcodebuild -version
-
-      - name: シミュレータの一覧（デバッグ用）
-        run: xcrun simctl list devices
-
-      - name: ビルド
-        run: |
-          xcodebuild clean build \
-            -project BudgetBook.xcodeproj \
-            -scheme BudgetBook \
-            -destination 'platform=iOS Simulator,name=iPhone 14' \
-            -sdk iphonesimulator
-
-      - name: テスト
-        run: |
-          xcodebuild clean test \
-            -project BudgetBook.xcodeproj \
-            -scheme Tests \
-            -destination 'platform=iOS Simulator,name=iPhone 14' \
-            -sdk iphonesimulator \
-            -enableCodeCoverage YES
+      - name: UnitTests
+        run: xcodebuild test -project BudgetBook.xcodeproj -scheme BudgetBook -sdk iphonesimulator -destination platform='iOS Simulator,name=iPhone 16,OS=18.4'
