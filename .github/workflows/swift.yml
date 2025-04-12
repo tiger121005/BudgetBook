@@ -29,5 +29,9 @@ jobs:
       - name: xcode version
         run: xcodebuild -version
 
+      - name: Clear derived data
+        run: |
+          rm -rf ~/Library/Developer/Xcode/DerivedData/*
+
       - name: Tests
         run: xcodebuild test -project BudgetBook.xcodeproj -scheme BudgetBook -sdk iphonesimulator -destination platform='iOS Simulator,name=iPhone 16,OS=18.4'
