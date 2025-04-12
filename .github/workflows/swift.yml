@@ -33,9 +33,6 @@ jobs:
         run: |
           rm -rf ~/Library/Developer/Xcode/DerivedData/*
 
-      - name: Tests
-        run: xcodebuild test -project BudgetBook.xcodeproj -scheme BudgetBook -sdk iphonesimulator -destination platform='iOS Simulator,name=iPhone 16,OS=18.4'
-
       - name: ビルド
         run: |
           xcodebuild clean build \
@@ -51,3 +48,8 @@ jobs:
             -scheme Tests \
             -destination 'platform=iOS Simulator,name=iPhone 14' \
             -sdk iphonesimulator \
+
+      - name: Tests
+        run: xcodebuild test -project BudgetBook.xcodeproj -scheme BudgetBook -sdk iphonesimulator -destination platform='iOS Simulator,name=iPhone 16,OS=18.4'
+
+      
