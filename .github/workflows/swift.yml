@@ -24,7 +24,12 @@ jobs:
         run: xcrun simctl list devices
 
       - name: ビルド
-        run: swift build
+        run: |
+          xcodebuild clean build \
+            -workspace YourProject.xcworkspace \  # ← CocoaPods等使っていなければ -project に変えてOK
+            -scheme YourSchemeName \
+            -destination 'platform=iOS Simulator,name=iPhone 14' \
+            -sdk iphonesimulator
 
       - name: テスト
         run: |
