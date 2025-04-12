@@ -35,3 +35,19 @@ jobs:
 
       - name: Tests
         run: xcodebuild test -project BudgetBook.xcodeproj -scheme BudgetBook -sdk iphonesimulator -destination platform='iOS Simulator,name=iPhone 16,OS=18.4'
+
+      - name: ビルド
+        run: |
+          xcodebuild clean build \
+            -project BudgetBook.xcodeproj \
+            -scheme BudgetBook \
+            -destination 'platform=iOS Simulator,name=iPhone 14' \
+            -sdk iphonesimulator
+
+      - name: テスト
+        run: |
+          xcodebuild clean test \
+            -project BudgetBook.xcodeproj \
+            -scheme Tests \
+            -destination 'platform=iOS Simulator,name=iPhone 14' \
+            -sdk iphonesimulator \
