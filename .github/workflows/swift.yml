@@ -26,7 +26,7 @@ jobs:
       - name: ビルド
         run: |
           xcodebuild clean build \
-            -workspace YourProject.xcworkspace \  # ← CocoaPods等使っていなければ -project に変えてOK
+            -workspace YourProject.xcodeproj \  # ← CocoaPods等使っていなければ -project に変えてOK
             -scheme YourSchemeName \
             -destination 'platform=iOS Simulator,name=iPhone 14' \
             -sdk iphonesimulator
@@ -34,7 +34,7 @@ jobs:
       - name: テスト
         run: |
           xcodebuild clean test \
-            -workspace BudgetBook.xcworkspace \
+            -workspace BudgetBook.xcodeproj \
             -scheme Tests \
             -destination 'platform=iOS Simulator,name=iPhone 14' \
             -sdk iphonesimulator \
