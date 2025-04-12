@@ -1,5 +1,7 @@
 # This workflow will build a Swift project
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-swift
+env:
+  XCODE_VERSION: "16.3"
 
 name: Xcode Build & Test
 
@@ -16,9 +18,6 @@ jobs:
     steps:
       - name: リポジトリをチェックアウト
         uses: actions/checkout@v3
-
-      - name: Xcode 16.3 を選択
-        run: sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
 
       - name: Xcodeのバージョン確認
         run: xcodebuild -version
