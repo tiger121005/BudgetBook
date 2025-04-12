@@ -19,6 +19,9 @@ jobs:
       - name: リポジトリをチェックアウト
         uses: actions/checkout@v3
 
+      - name: Set Xcode for CI
+        run: sudo xcode-select -s /Applications/Xcode_${{ env.XCODE_VERSION }}.app
+
       - name: Xcodeのバージョン確認
         run: xcodebuild -version
 
