@@ -8,7 +8,7 @@ on:
 
 jobs: 
   build:
-    runs-on: macOS-latest
+    runs-on: macOS-15.4
     
     steps:
       - uses: actions/checkout@v2
@@ -18,10 +18,10 @@ jobs:
         with:
           xcode-version: latest-stable
 
-      # - name: setup swift
-      #   uses: swift-actions/setup-swift@v2
-      #   with:
-      #     swift-version: "6.1.0"
+      - name: setup swift
+        uses: swift-actions/setup-swift@v2
+        with:
+          swift-version: "6.1.0"
           
       - name: Get swift version
         run: swift --version
