@@ -8,11 +8,7 @@ on:
 
 jobs: 
   build:
-    name: Swift ${{ matrix.swift }} on ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [macos-15]
-        swift: ["6.1"]
+    name: Swift CI
     runs-on: macos-15
     
     steps:
