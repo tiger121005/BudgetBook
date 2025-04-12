@@ -39,7 +39,7 @@ jobs:
           xcodebuild clean build \
             -project BudgetBook.xcodeproj \
             -scheme BudgetBook \
-            -destination 'platform=iOS Simulator,name=iPhone 14' \
+            -destination 'platform=iOS Simulator,name=iPhone 16' \
             -sdk iphonesimulator
 
       - name: テスト
@@ -47,7 +47,7 @@ jobs:
           xcodebuild clean test \
             -project BudgetBook.xcodeproj \
             -scheme Tests \
-            -destination 'platform=iOS Simulator,name=iPhone 14' \
+            -destination 'platform=iOS Simulator,name=iPhone 16' \
             -sdk iphonesimulator \
 
       - name: Tests
